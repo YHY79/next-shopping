@@ -7,9 +7,10 @@ import SessionProvider from "./SessionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "YHy-eCommerce",
-  description: "have a great shopping experience",
-};
+  metadataBase: new URL('http://localhost:3002'),
+  title: 'Title webtsite',
+  description: 'this is the desciption'
+}
 
 export default function RootLayout({
   children,
@@ -19,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
+        
           <Navbar />
           <main className="m-auto min-w-[300px] max-w-7xl p-4">{children}</main>
           <Footer />
-        </SessionProvider>
+        
       </body>
     </html>
   );
