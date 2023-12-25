@@ -6,30 +6,14 @@ import { PrismaClient } from "@prisma/client";
 import { NextAuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import NextAuth from "next-auth/next";
-import AzureADB2CProvider from "next-auth/providers/azure-ad-b2c";
-import EmailProvider from 'next-auth/providers/email'
-
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma as PrismaClient) as Adapter,
   providers: [
-    AzureADB2CProvider({
-      tenantId: env.AZURE_AD_B2C_TENANT_NAME,
-      clientId: env.AZURE_AD_B2C_CLIENT_ID,
-      clientSecret: env.AZURE_AD_B2C_CLIENT_SECRET,
-      primaryUserFlow: env.AZURE_AD_B2C_PRIMARY_USER_FLOW,
-      authorization: { params: { scope: "offline_access openid" } },
-    }),
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
-      },
-      from: process.env.EMAIL_FROM
+    GoogleProvider({
+      clientId: env.GOOGLE_ID,
+      clientSecret: env.GOOGLE_SECRET,
     }),
   ],
   callbacks: {

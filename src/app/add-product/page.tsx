@@ -11,11 +11,11 @@ export const metadata = {
 async function addProduct(formData: FormData) {
   "use server";
 
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (!session) {
-    redirect("/api/auth/signin?callbackUrl=/add-product");
-  }
+  // if (!session) {
+  //   redirect("/api/auth/signin?callbackUrl=/add-product");
+  // }
 
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString();
@@ -34,11 +34,11 @@ async function addProduct(formData: FormData) {
 }
 
 export default async function AddProductPage() {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (!session) {
-    redirect("/api/auth/signin?callbackUrl=/add-product");
-  }
+  // if (!session) {
+  //   redirect("/api/auth/signin?callbackUrl=/add-product");
+  // }
 
   return (
     <div>
